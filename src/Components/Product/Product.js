@@ -7,11 +7,11 @@ export default function Product (props) {
             <div>
                 
                 <div className ='product-display'>    
-        
-                <ul> {name}</ul>
-                <ul> {price}</ul> 
-                <img src ={img} alt ="no img"></img>
-    
+         
+                 <ul> {name}</ul>
+                 <ul> {price}</ul> 
+                 <img src ={img} alt ="no img"></img>
+  
                 </div>
             </div>
         )

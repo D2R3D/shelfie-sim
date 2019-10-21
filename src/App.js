@@ -12,10 +12,21 @@ export default class App extends Component {
       {name: 'snacks', price: 299.99, img: 'http://cdn.shopify.com/s/files/1/0191/7850/products/RICKMORTY_39_-_COVER_A_FNL_WEB_1024x1024.jpg?v=1530034748'},
       {name: 'beer', price: 19.99, img: 'https://img.buzzfeed.com/buzzfeed-static/static/2017-05/18/5/asset/buzzfeed-prod-fastlane-03/sub-buzz-30721-1495100246-6.png?downsize=1600:*&output-format=auto&output-quality=auto]'},]
     }
+    this.getInventory = this.getInventory.bind(this)
+  }
+//   componentDidMount() {
+//    this.getInventory()
+// }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState({ inventory: {} });
+    }
   }
 
-  getInventory=()=>{
-    axios.get('/api/inventory').then(results => this.setState({inventory: results.data}))
+
+  getInventory(){
+    axios.get('/api/inventory').then(res => this.setState({inventory: res.data}))
     console.log('success')
   }
   render() {

@@ -10,11 +10,14 @@ export default class Form extends Component {
             price: 0,
             img: ''
         }  
+this.handlePrice = this.handlePrice.bind(this)
+this.handleName = this.handleName.bind(this)
+this.handleSubmit = this.handleSubmit.bind(this)
     }
     
     handleName(text) {
         if (text.length <= 20) {
-          this.setState({ name: text })
+          this.setState({ name: text})
         }
       }
 
@@ -53,19 +56,24 @@ export default class Form extends Component {
  
     this.setState({ price: val })
   }
-    handleImage(url){
-        var newImage = new Image();
-        newImage.onload= _ => this.setState({img: url});
-        newImage.onerror = _ => this.setState({ img: ''});
-        newImage.src = newImage;
-    }
 
+  numberSubmit=(num) => {
+    num ? num = Number(num) : num = 0
+    return Math.round(num * 100)
+  }
+
+    handleImage = (url) =>{
+      var img = new Image();
+    img.onload = _ => this.setState({ img: url });
+    img.onerror = _ => this.setState({ img: '' });
+    img.src = url;
+  }
     handleSubmit() {
         let { name, price, img } = this.state;
         if (name) {
           let product = {
-            name,
-            price: this.handlePrice(price),
+            name: '',
+            price: this.numberSubmit(price),
             img
           }
           axios.post('/api/product', product)

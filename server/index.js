@@ -15,5 +15,6 @@ massive(CONNECTION_STRING).then(db =>{
 
 
 app.get('/api/inventory', ctrl.getInventory)
+app.post('/api/inventory', ctrl.addInventory)
 app.listen(SERVER_PORT, () => console.log(`${SERVER_PORT} lit n connected 🔥`))
 
